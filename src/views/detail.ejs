@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with FoodHut landing page.">
+    <meta name="author" content="Devcrud">
+    <title>
+        <%=food.Food%> | EZ Money
+    </title>
+
+    <%- include('./components/linkcss'); -%>
+        <style>
+            ul li {
+                background-color: transparent !important;
+            }
+
+            *::-webkit-scrollbar {
+                width: 12px;
+                /* Width of the scrollbar */
+            }
+
+            *::-webkit-scrollbar-track {
+                background: transparent;
+                /* Transparent track */
+            }
+
+            *::-webkit-scrollbar-thumb {
+                background-color: rgba(136, 136, 136, 0.5);
+                /* Transparent scrollbar thumb */
+                border-radius: 6px;
+                /* Rounded corners */
+            }
+
+            *::-webkit-scrollbar-thumb:hover {
+                background-color: rgba(85, 85, 85, 0.5);
+                /* Darker transparent on hover */
+            }
+
+            /* Firefox scrollbar with transparency */
+            * {
+                scrollbar-width: thin;
+                /* Thin scrollbar */
+                scrollbar-color: rgba(136, 136, 136, 0.5) transparent;
+                /* Thumb (transparent) and track color */
+            }
+
+            .comments-section {
+                background-color: transparent;
+                margin-top: 20px;
+            }
+
+            .comments-section h3 {
+                margin-bottom: 15px;
+            }
+
+            .comments-list {
+                max-height: 200px;
+                /* Limit height for the comment section */
+                overflow-y: auto;
+                /* Enable vertical scrolling */
+                border-radius: 5px;
+                padding: 10px;
+            }
+
+
+
+            .btn-primary {
+                margin-top: 10px;
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .image-container img {
+                    max-height: 300px;
+                    /* Limit image height on smaller screens */
+                    object-fit: cover;
+                    /* Cover image */
+                }
+
+                .input-group {
+                    width: 100%;
+                    /* Make input group full width */
+                }
+            }
+        </style>
+</head>
+
+<body>
+
+    <%- include('./components/header'); -%>
+        <main style="margin-top: 200px;">
+            <div class="container my-5">
+                <div class="row">
+                    <!-- Hình ảnh món ăn -->
+                    <div class="col-md-6 image-container">
+                        <img src="../<%=food.img_src%>" class="img-fluid" alt="Hình ảnh món ăn">
+                        <hr>
+
+                        <!-- Comments section -->
+                        <section class="comments-section" aria-labelledby="comments-heading">
+                            <h3 id="comments-heading">Leave a Comment</h3>
+                            <div id="comment-form">
+                                <div class="mb-3">
+                                    <label for="comment" class="form-label">Your Comment:</label>
+                                    <textarea class="form-control" id="comment" rows="3" required></textarea>
+                                </div>
+                                <button type="button" id="postcomment" class="btn btn-primary">Submit</button>
+                            </div>
+                        </section>
+                        <!-- End of comments section -->
+                    </div>
+
+                    <!-- Thông tin món ăn -->
+                    <main class="col-md-6">
+                        <h1>
+                            <%=food.Food%>
+                        </h1>
+
+                        <p><strong>Type:</strong>
+                            <%=food.Type %>
+                        </p>
+                        <hr>
+                        <h5><span class="price">Price:</span> <span class="new-price">
+                                <%=food.Price%> $
+                            </span></h5>
+                        <div class="scrollable-div"
+                            style="height:350px; overflow: scroll; border: 1px solid #333; padding: 25px;">
+                            <%-food.info_Detail%>
+                        </div>
+
+                        <div class="input-group my-3" style="width: 150px;">
+                            <button class="btn btn-success" id="addcart">Add to Cart</button>
+                        </div>
+                        <hr>
+                        <section id="comments-list" class="mt-3">
+                            <h5>Previous Comments</h5>
+                            <div class="comments-list">
+                                <ul id="commentList" class="list-group list-group-flush">
+                                    <!-- Placeholder for comments -->
+                                    <% if(comments.success){ const commentsList=comments.comments;
+                                        commentsList.forEach((comment)=> {
+                                        %>
+                                        
+                                        <li class="list-group-item ">
+                                            <i class="date">
+                                                <%=comment.Date %>
+                                            </i>
+                                            <p><strong class="px-4">
+                                                    <%=comment.User_name %>:
+                                                </strong><%-comment.Comment %></p>
+                                        </li>
+                                        <hr>
+
+                                        <%})}else{%>
+                                            <%-comments.message %>
+                                                <%}%>
+
+                                                    <!-- Add more comments dynamically here -->
+                                </ul>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
+        </main>
+
+        <%- include('./components/footer'); -%>
+            <%- include('./components/script'); -%>
+            <script src="../assets/js/addcart_and_postcomment.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "dacn1",
+  "version": "1.0.0",
+  "description": "Try to make things work",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npx nodemon app.js"
+  },
+  "keywords": [
+    "LINH"
+  ],
+  "author": "LINH (22NS033_DANG DUC LOC)",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.6",
+    "express": "^4.19.2",
+    "glob": "^11.0.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.11.0",
+    "nodemon": "^3.1.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.17.0"
+  }
+}

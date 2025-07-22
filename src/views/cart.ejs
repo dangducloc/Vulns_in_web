@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with FoodHut landing page.">
+    <meta name="author" content="Devcrud">
+    <title>
+        <%=User_name%>'s Cart
+    </title>
+<style> 
+main div,input{
+    background: transparent !important;
+    color: white;
+}
+</style>
+    <%- include('./components/linkcss'); -%>
+</head>
+
+<body>
+
+    <%- include('./components/header'); -%>
+
+    <main style="margin-top: 200px;">
+        <!-- Shopping Cart Section -->
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Shopping Cart Items -->
+                <div class="col-lg-8">
+                    <h2>Shopping Cart</h2>
+                    <div class="card p-3 " id="cart">
+                        <!-- Item 1 -->
+                         <% if(carts.length == 0 ){%>
+                            Your cart is empty !!
+                        <% }else { carts.forEach((cart)=> { %>
+                        <div class="item_cart d-flex justify-content-between align-items-center border-bottom py-2">
+                            <div class="d-flex align-items-center w-100">
+                                <img src="../<%=cart.img_src%>" alt="Shirt" style="width: 85px;" class="me-2">
+                                <div class="mx-2">
+                                    <p class="food_name mb-0"><%=cart.Food%></p>
+                                    <p class="text-muted"><%=cart.Type%></p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center w-15 mx-2">
+                                Amount:<br>
+                                <input id="<%=cart.IDFood%>" type="number" min="1" max="<%=cart.left_amount%>" value="<%=cart.Amount%>" class="amounts form-control text-start" style="width: 60px; " required>
+                            </div>
+                            <div class="text-end w-50">Left amount: <br><span class="Left"><%=cart.left_amount%></span></div>
+                            <div class="text-end w-25">Price: <br>$<span class="Price"><%=cart.Price%></span>.00</div>
+                            <button class="btn btn-link text-danger rmItem" data-idfood="<%=cart.IDFood%>">✕</button>
+                        </div>
+                        <%})}%>
+                    </div>
+                    <a href="/home#gallary" class="btn btn-link mt-3">← Back to shop</a>
+                </div>
+
+                <!-- Summary -->
+                <div class="col-lg-4">
+                    <div class="card p-3">
+                        <h5 class="card-title">Summary</h5>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <p>Item Amount: <span id="items_Amount"><%=carts.length%></span></p>
+                        </div>
+                        <div class="mb-3">
+                            <label for="payments" class="form-label">PAYMENT METHODS</label>
+                            <select class="form-control custom-select bg-dark text-light text-center border" id="payments" aria-label="Select payment method">
+                                <option value="Cash" class="bg-dark text-light text-center">Cash</option>
+                                <option value="Credit Card" class="bg-dark text-light text-center">Credit Card</option>
+                                <option value="Debit Card" class="bg-dark text-light text-center">Debit Card</option>
+                            </select>
+                            
+                            <hr>
+                            <label for="address" class="form-label">YOU'R ADDRESS</label>
+                            <input class="border form-control text-light bg-dark text-center" id="address" placeholder="Where are you? ">
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <h5>Total Price</h5>
+                            <h5>$<span id="Total"></span>.00</h5>
+                        </div>
+                        <button id="checkout" class="btn btn-primary w-100">CHECKOUT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('./components/footer'); -%>
+    <%- include('./components/script'); -%>
+    <script src="../assets/js/cart_and_checkout.js"></script>
+</body>
+
+</html>

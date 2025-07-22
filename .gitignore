@@ -1,0 +1,7 @@
+src/node_modules/*
+nginx/ssl/cert.pem
+nginx/ssl/key.pem
+nginx/owasp-crs/rules/*
+nginx/logs/*
+nginx/owasp/modsecurity-logs/*
+src/logs/*
